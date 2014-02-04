@@ -55,9 +55,9 @@
     <!-- ios -->
     <platform name="ios">
       
-        <config-file target="config.xml" parent="plugins">
+        <config-file target="config.xml" parent="/*">
             <feature name="ConnectPlugin">
-            <param name="ios-package" value="oConnectPlugin" />
+            <param name="ios-package" value="ConnectPlugin" />
          </feature>
         </config-file>
         
@@ -82,10 +82,6 @@
             </dict>
           </array>
         </config-file>
-        
-        <!-- facebook resource bundles -->
-        <resource-file src="src/ios/resources/FacebookSDKResources.bundle" />
-        <resource-file src="src/ios/resources/FBUserSettingsViewResources.bundle" />
         
         <!-- system frameworks -->
         <framework src="libsqlite3.dylib" />

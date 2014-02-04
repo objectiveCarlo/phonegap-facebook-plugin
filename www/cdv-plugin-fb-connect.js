@@ -42,14 +42,16 @@ CDV.FBClass = {
                 e.authResponse.expirationTime = expirationTime;
             }
             localStorage.setItem('cdv_fb_session', JSON.stringify(e.authResponse));
-            FB.Auth.setAuthResponse(e.authResponse, 'connected');
+            if(typeof FB !== 'undefined' && typeof FB.Auth !== 'undefined' && FB.Auth.setAuthResponse !== 'undefined')
+                FB.Auth.setAuthResponse(e.authResponse, 'connected');
             if (cb) cb(e);
         }, (fail ? fail : null), fbClassName, 'login', params.scope.split(','));
     },
     logout: function (cb, fail) {
         cordova.exec(function (e) {
             localStorage.removeItem('cdv_fb_session');
-            FB.Auth.setAuthResponse(null, 'notConnected');
+            if(typeof FB !== 'undefined' && typeof FB.Auth !== 'undefined' && FB.Auth.setAuthResponse !== 'undefined')
+                FB.Auth.setAuthResponse(null, 'notConnected');
             if (cb) cb(e);
         }, (fail ? fail : null), fbClassName, 'logout', []);
     },
